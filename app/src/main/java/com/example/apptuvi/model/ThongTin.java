@@ -89,4 +89,8 @@ public class ThongTin implements Serializable {
                 ", " + gio + "h" +
                 ", " + phut + " phút";
     }
+
+    public String convertSolar2Lunar () {
+        return ChuyenDuongSangAm.convertSolar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam),7.0);
+    }
 }

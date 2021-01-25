@@ -3,6 +3,7 @@ package com.example.apptuvi.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +27,7 @@ public class DanhSachActivity extends AppCompatActivity {
     Button btnQuayLai;
     ArrayAdapter<String> adapter;
     ArrayList<String> list;
-    public static int position = -1;
+    public static int position = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +58,18 @@ public class DanhSachActivity extends AppCompatActivity {
                 if (position != -1) {
                     list.remove(position);
                     MainActivity.listThongTin.remove(position);
+                    position = 0;
                     adapter.notifyDataSetChanged();
                 }
+            }
+        });
+
+        btnAnSao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DanhSachActivity.this,AnsaoActivity.class);
+                intent.putExtra("ThongTin",MainActivity.listThongTin.get(position));
+                startActivity(intent);
             }
         });
     }
